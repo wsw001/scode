@@ -28,6 +28,10 @@ def textbar(modeNo):
     print("\n")
 
 if __name__ == '__main__':
-    enter=int(input("Enter one text-proc-mod(1-9):"))
-    textbar(enter)
+    while 1: 
+        enter=int(input("Enter one text-proc-mod(1-9):"))
+        if enter==-1:
+            break
+        else:
+            textbar(enter)
 
