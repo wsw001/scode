@@ -31,13 +31,12 @@ def textbar(modeNo):
     print("\n")
 
 if __name__ == '__main__':
-    #time.sleep(1)
+    time.sleep(1)
     sys.stdout.flush()
-    choice1=int(input("Enter number range,START:(1-9)"))
-    choice2=int(input("Enter number range,END:(1-9)"))
+    choice1,choice2=eval(input("Enter number range,START:(1-9)"))
 
     for i in range(choice1,choice2):
         t=threading.Thread(target=textbar,args=(i,))
         t.start()
-        t.join()
+        #t.join()
 
