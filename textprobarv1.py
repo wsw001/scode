@@ -1,5 +1,7 @@
 import math
 import time
+import sys
+import threading
 
 def textbar(modeNo):
     x=0.1
@@ -13,7 +15,8 @@ def textbar(modeNo):
     str8='(x + (1 - x) / 2) ** 8'
     str9='1 + (1 - x)**(3)'
     wd=100
-    print("Begin".center(105,'='))
+    print("\n")
+    print("Begin%s".center(105,'=')%(str(modeNo)))
     start=time.perf_counter()
     choice='str'+str(modeNo)
     for i in range(101):
@@ -24,14 +27,17 @@ def textbar(modeNo):
         x=eval(eval(choice))
         print("\r{0}%[{1}{2}]{3:.2f}s".format(i,a,b,stu),end='')
         time.sleep(x/10)
-    print("\n"+"END".center(105,'='))
+    print("\n"+"END%s".center(105,'=')%(str(modeNo)))
     print("\n")
 
 if __name__ == '__main__':
-    while 1: 
-        enter=int(input("Enter one text-proc-mod(1-9):"))
-        if enter==-1:
-            break
-        else:
-            textbar(enter)
+    #time.sleep(1)
+    sys.stdout.flush()
+    choice1=int(input("Enter number range,START:(1-9)"))
+    choice2=int(input("Enter number range,END:(1-9)"))
+
+    for i in range(choice1,choice2):
+        t=threading.Thread(target=textbar,args=(i,))
+        t.start()
+        t.join()
 
